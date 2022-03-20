@@ -39,4 +39,33 @@ item.done : !item.done);
         }
       }
     }
+    
+    moveUp(item){
+  let index = this.allItems.length;
+   for(let i = 0; i < index; i++){
+     if(item == this.allItems[i]){
+       index = i;
+     }
+   }
+   if(index != 0){
+    let aux = this.allItems[index];
+    this.allItems[index] = this.allItems[index - 1];
+    this.allItems[index - 1] = aux;}
+  
+    }
+
+    moveDown(item){
+      let index = this.allItems.length;
+       for(let i = 0; i < index; i++){
+         if(item == this.allItems[i]){
+           index = i;
+         }
+       }
+      
+       if(!(index == this.allItems.length-1)){
+        let aux = this.allItems[index];
+        this.allItems[index] = this.allItems[index + 1];
+        this.allItems[index + 1] = aux;}
+      
+        }
 }

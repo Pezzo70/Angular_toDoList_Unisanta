@@ -8,7 +8,7 @@
   <div class="btn-wrapper"> <button class="btn btn-menu" [class.active]="filter == 'all'" (click)="filter = 'all'"> All
     </button> <button class="btn btn-menu" [class.active]="filter == 'active'" (click)="filter = 'active'"> To Do
     </button> <button class="btn btn-menu" [class.active]="filter == 'done'" (click)="filter = 'done'"> Done </button>
-    <button class = "btn" (click)="removeAllDone();" *ngIf="filter == 'all'"> Delete all done</button>
+    <button class = "btn" (click)="removeAllDone()" *ngIf="filter == 'all'"> Delete all done</button>
     
   </div>
   
@@ -21,7 +21,7 @@
   <ul>
     <li *ngFor="let item of items">
       <!--Variavel -->
-      <app-item (remove)="remove(item)" [item]="item"></app-item>
+      <app-item [filter]="filter" (remove)="remove(item)"  (moveUp)="moveUp(item)" (moveDown)="moveDown(item)" [item]="item"></app-item>
       <!--
      class - ts - css - html -> estrutura de um component
     Event Binding             Part 2(input pai-filho)            Part 1(filho-pai)

@@ -12,6 +12,7 @@
 .btn {
     /* menu buttons flexbox styles */
     flex-basis: 49%;
+    cursor: pointer;
 }
 
 .btn-save {
@@ -22,6 +23,7 @@
 
 .btn-save:hover {
     background-color: #444242;
+    
 }
 
 .btn-save:focus {
@@ -41,6 +43,7 @@
 
 .btn-warn:hover {
     background-color: #9a0000;
+    cursor: pointer;
 }
 
 .btn-warn:active {
@@ -56,6 +59,36 @@
     box-sizing: border-box;
     font-size: 1rem;
     margin: 1rem 0;
+}
+.btn-mov-dwn{
+    color: #ccc;
+    width: 30px;
+    background-color: #2f3542;
+    font-size: 17px;
+    border: 0px;
+}
+.btn-mov-up{
+    color: #ccc;
+    width: 30px;
+    background-color:#2f3542;
+    font-size: 17px;
+    border: 0px;
+}
+.btn-mov-dwn:hover{
+    color: #ccc;
+    width: 35px;
+    border: 0px;
+    background-color: #ff3838;
+    cursor: pointer;
+    font-size: 20px;
+}
+.btn-mov-up:hover{
+    color: #ccc;
+    width: 35px;
+    border: 0cm;
+    background-color:#1644a7;
+    cursor: pointer;
+    font-size: 20px;
 }
 
 /* Custom checkboxes
