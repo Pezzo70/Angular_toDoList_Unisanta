@@ -11,11 +11,13 @@ export class AppComponent {
   title = 'todo';
   filter: 'all' | 'active' | 'done' = 'all';
   allItems: any[] = [];
+  //ngOnInit(){}
+  
   constructor(private http: HttpClient) {}
+  
 
   letodosRegistros() {
-    this.http.get<Item[]>(`/api/getAll`).subscribe(resultado =>
-      this.allItems = resultado);
+   this.http.get<Item[]>(`/api/getAll`).subscribe(resultado => this.allItems = resultado);
   }
   addItem(description: string) {
     var produto = new Item();
