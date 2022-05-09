@@ -1,12 +1,10 @@
 <div class="item">
     <input [id]="item.description" type="checkbox" (change)="item.done = !
-   item.done" [checked]="item.done" />
+    item.done" [checked]="item.done" />
     <label [for]="item.description">{{item.description}}</label>
     <div class="btn-wrapper" *ngIf="!editable">
         <button class="btn" (click)="editable = !editable">Edit</button>
         <button class="btn btn-warn" (click)="remove.emit()">Delete</button>
-        <button class="btn-mov-up" *ngIf = "filter == 'all'" (click)="moveUp.emit()">↑</button>
-        <button class="btn-mov-dwn" *ngIf = "filter == 'all'" (click)="moveDown.emit()">↓</button>
     </div>
     <!-- This section shows only if user clicks Edit button -->
     <div *ngIf="editable">

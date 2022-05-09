@@ -1,5 +1,5 @@
-export interface Item {
+export class Item {
+    id: string;
     description: string;
     done: boolean;
-   }
-   
+    }

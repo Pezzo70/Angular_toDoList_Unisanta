@@ -1,71 +1,49 @@
 import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Item } from './item';
 @Component({
- selector: 'app-root',
- templateUrl: './app.component.html',
- styleUrls: ['./app.component.css']
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
 })
-export class AppComponent {
- title = 'todo';
- filter: 'all' | 'active' | 'done' = 'all';
- //array de obj
- allItems = [
- { description: 'eat', done: true },
- { description: 'sleep', done: false },
- { description: 'play', done: false },
- { description: 'laugh', done: false },
 
- ];
- get items() {
- if (this.filter === 'all') {
- return this.allItems;
- }
- return this.allItems.filter(item => this.filter === 'done' ?
-item.done : !item.done);
- }
- addItem(description: string) {
-  this.allItems.unshift({
-  description,
-  done: false
-  });
- } 
- remove(item) {
-    this.allItems.splice(this.allItems.indexOf(item), 1);
-   }
-   removeAllDone() {
-      for (let index = this.allItems.length - 1; index >= 0; index--) {
-        const element = this.allItems[index];
-        if (element.done == true) {
-          this.remove(element);
-        }
+export class AppComponent {
+  title = 'todo';
+  filter: 'all' | 'active' | 'done' = 'all';
+  allItems: any[] = [];
+  constructor(private http: HttpClient) {}
+
+  letodosRegistros() {
+    this.http.get<Item[]>(`/api/getAll`).subscribe(resultado =>
+      this.allItems = resultado);
+  }
+  addItem(description: string) {
+    var produto = new Item();
+    produto.description = description;
+    produto.done = false;
+    this.http.post<Item>(`/api/post`, produto).subscribe(resultado => { console.log(resultado); this.letodosRegistros(); });
+  }
+  updateItem(item) {
+    var indice = this.allItems.indexOf(item);
+    var id = this.allItems[indice]._id;
+    this.http.patch<Item>(`/api/update/${id}`, item).subscribe(resultado => { console.log(resultado); this.letodosRegistros(); });
+  }
+
+  remove(item) {
+    var indice = this.allItems.indexOf(item);
+    var id = this.allItems[indice]._id;
+    this.http.delete<Item>(`/api/delete/${id}`).subscribe(resultado => {
+      console.log(resultado); this.letodosRegistros();
+    });
+  }
+  removeAllDone() {
+    for (let index = this.allItems.length - 1; index >= 0; index--) {
+      const element = this.allItems[index];
+      if (element.done == true) {
+        this.remove(element);
       }
     }
-    
-    moveUp(item){
-  let index = this.allItems.length;
-   for(let i = 0; i < index; i++){
-     if(item == this.allItems[i]){
-       index = i;
-     }
-   }
-   if(index != 0){
-    let aux = this.allItems[index];
-    this.allItems[index] = this.allItems[index - 1];
-    this.allItems[index - 1] = aux;}
-  
-    }
+  }
 
-    moveDown(item){
-      let index = this.allItems.length;
-       for(let i = 0; i < index; i++){
-         if(item == this.allItems[i]){
-           index = i;
-         }
-       }
-      
-       if(!(index == this.allItems.length-1)){
-        let aux = this.allItems[index];
-        this.allItems[index] = this.allItems[index + 1];
-        this.allItems[index + 1] = aux;}
-      
-        }
 }
+
