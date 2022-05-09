@@ -1,6 +1,6 @@
 <div class="item">
     <input [id]="item.description" type="checkbox" (change)="item.done = !
-    item.done" [checked]="item.done" />
+    item.done;update.emit()" [checked]="item.done" />
     <label [for]="item.description">{{item.description}}</label>
     <div class="btn-wrapper" *ngIf="!editable">
         <button class="btn" (click)="editable = !editable">Edit</button>

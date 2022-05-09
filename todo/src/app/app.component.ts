@@ -11,7 +11,10 @@ export class AppComponent {
   title = 'todo';
   filter: 'all' | 'active' | 'done' = 'all';
   allItems: any[] = [];
-  //ngOnInit(){}
+
+    ngOnInit(){
+      this.letodosRegistros();
+    }
   
   constructor(private http: HttpClient) {}
   

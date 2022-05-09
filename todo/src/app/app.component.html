@@ -18,7 +18,7 @@
   </h2>
   <ul>
     <li *ngFor="let item of allItems">
-      <app-item (remove)="remove(item)" [item]="item"></app-item>
+      <app-item (remove)="remove(item)" [item]="item" (update)="updateItem(item)"></app-item>
     </li>
   </ul>
 </div>
